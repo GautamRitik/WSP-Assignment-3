@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var Expense = require('../model/expense');
 
-/* GET all expenses. */
+/* GET all expenses and display on the home page. */
 router.get('/', async function (req, res, next) {
   try {
     const expenses = await Expense.find();
-    res.render('expenses/index', { title: 'All Expenses', expenses: expenses });
+    res.render('index', { title: 'All Expenses', expenses: expenses });
   } catch (err) {
     next(err);
   }
@@ -14,7 +14,7 @@ router.get('/', async function (req, res, next) {
 
 /* GET form to add a new expense. */
 router.get('/add', function (req, res, next) {
-  res.render('expenses/add', { title: 'Add Expense' });
+  res.render('add_expense', { title: 'Add Expense' });
 });
 
 /* POST new expense. */
@@ -26,7 +26,7 @@ router.post('/add', async function (req, res, next) {
       price: req.body.price,
     });
     await newExpense.save();
-    res.redirect('/expenses');
+    res.redirect('/');
   } catch (err) {
     next(err);
   }
@@ -36,7 +36,7 @@ router.post('/add', async function (req, res, next) {
 router.get('/edit/:id', async function (req, res, next) {
   try {
     const expense = await Expense.findById(req.params.id);
-    res.render('expenses/edit', { title: 'Edit Expense', expense: expense });
+    res.render('edit_expense', { title: 'Edit Expense', expense: expense });
   } catch (err) {
     next(err);
   }
@@ -50,17 +50,7 @@ router.post('/edit/:id', async function (req, res, next) {
       date: req.body.date,
       price: req.body.price,
     });
-    res.redirect('/expenses');
-  } catch (err) {
-    next(err);
-  }
-});
-
-/* GET delete expense confirmation. */
-router.get('/delete/:id', async function (req, res, next) {
-  try {
-    const expense = await Expense.findById(req.params.id);
-    res.render('expenses/delete', { title: 'Delete Expense', expense: expense });
+    res.redirect('/');
   } catch (err) {
     next(err);
   }
@@ -69,11 +59,12 @@ router.get('/delete/:id', async function (req, res, next) {
 /* POST delete expense. */
 router.post('/delete/:id', async function (req, res, next) {
   try {
-    await Expense.findByIdAndRemove(req.params.id);
-    res.redirect('/expenses');
+    await Expense.findByIdAndDelete(req.params.id);
+    res.redirect('/');
   } catch (err) {
     next(err);
   }
 });
+
 
 module.exports = router;

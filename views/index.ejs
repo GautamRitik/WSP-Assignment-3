@@ -1,7 +1,39 @@
-  <%- include Partials/header.ejs %>
-  <%- include Partials/main_nav.ejs %>
-  <!--Main Content-->
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    
-<%- include Partials/footer.ejs %>
+<%- include('Partials/header.ejs') %>
+
+<div class="container mt-5">
+  <h1><%= title %></h1>
+  <a href="/add" class="btn btn-success mb-3">Add New Expense</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (expenses && expenses.length > 0) { %>
+        <% expenses.forEach(function(expense) { %>
+          <tr>
+            <td><%= expense.name %></td>
+            <td><%= expense.date.toISOString().slice(0, 10) %></td>
+            <td>$<%= expense.price.toFixed(2) %></td>
+            <td>
+              <a href="/edit/<%= expense._id %>" class="btn btn-warning">Edit</a>
+              <form action="/delete/<%= expense._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this expense?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="4" class="text-center">No expenses found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('Partials/footer.ejs') %>

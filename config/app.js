@@ -4,7 +4,6 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let indexRouter = require('../routes/index');
 let expenseRouter = require('../routes/expense');
 
 let app = express();
@@ -29,11 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
 
 // Routes
-app.use('/', indexRouter);
-app.use('/expenses', expenseRouter);
+app.use('/', expenseRouter);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -42,11 +39,8 @@ app.use(function (req, res, next) {
 
 // Error handler
 app.use(function (err, req, res, next) {
-  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // Render the error page
   res.status(err.status || 500);
   res.render('error', { title: 'Error' });
 });

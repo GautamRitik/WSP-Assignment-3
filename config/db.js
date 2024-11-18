@@ -1,4 +1,3 @@
 module.exports = {
-    URI: 'mongodb://127.0.0.1:27017/ExpenseTracker',
-  };
-  
+  URI: 'mongodb+srv://ritikgautam:whX8Loa7LsKY85e3@cluster0.c6ra0.mongodb.net/ExpenseTracker?retryWrites=true&w=majority',
+};
