@@ -2,8 +2,13 @@ var express = require('express');
 var router = express.Router();
 var Expense = require('../model/expense');
 
-/* GET all expenses and display on the home page. */
-router.get('/', async function (req, res, next) {
+/* GET splash page (default route). */
+router.get('/', function (req, res, next) {
+  res.render('home', { title: 'Welcome to Expense Tracker' });
+});
+
+/* GET all expenses and display on the expenses page. */
+router.get('/expenses', async function (req, res, next) {
   try {
     const expenses = await Expense.find();
     res.render('index', { title: 'All Expenses', expenses: expenses });
@@ -26,7 +31,7 @@ router.post('/add', async function (req, res, next) {
       price: req.body.price,
     });
     await newExpense.save();
-    res.redirect('/');
+    res.redirect('/expenses');
   } catch (err) {
     next(err);
   }
@@ -50,7 +55,7 @@ router.post('/edit/:id', async function (req, res, next) {
       date: req.body.date,
       price: req.body.price,
     });
-    res.redirect('/');
+    res.redirect('/expenses');
   } catch (err) {
     next(err);
   }
@@ -60,11 +65,10 @@ router.post('/edit/:id', async function (req, res, next) {
 router.post('/delete/:id', async function (req, res, next) {
   try {
     await Expense.findByIdAndDelete(req.params.id);
-    res.redirect('/');
+    res.redirect('/expenses');
   } catch (err) {
     next(err);
   }
 });
-
 
 module.exports = router;

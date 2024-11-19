@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa; /* Light gray background for a modern look */
+    font-family: 'Roboto', sans-serif; /* Modern font */
+  }
+  
+  .navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  
+  .table th, .table td {
+    vertical-align: middle; /* Better alignment for table cells */
+  }
+  
+  .btn {
+    border-radius: 20px; /* Rounded buttons for a sleek look */
+  }
+  

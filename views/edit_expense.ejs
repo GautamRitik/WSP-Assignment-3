@@ -1,22 +1,26 @@
 <%- include('Partials/header.ejs') %>
 
 <div class="container mt-5">
-  <h1><%= title %></h1>
-  <form action="/edit/<%= expense._id %>" method="POST">
-    <div class="form-group">
-      <label for="name">Expense Name</label>
-      <input type="text" class="form-control" id="name" name="name" value="<%= expense.name %>" required>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h2 class="mb-4 text-center">Edit Expense</h2>
+      <form action="/edit/<%= expense._id %>" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Expense Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= expense.name %>" required>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" id="date" name="date" value="<%= expense.date.toISOString().slice(0, 10) %>" required>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input type="number" step="0.01" class="form-control" id="price" name="price" value="<%= expense.price %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-md mt-4">Update Expense</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="date">Date</label>
-      <input type="date" class="form-control" id="date" name="date" value="<%= expense.date.toISOString().slice(0, 10) %>" required>
-    </div>
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input type="number" step="0.01" class="form-control" id="price" name="price" value="<%= expense.price %>" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Update Expense</button>
-  </form>
+  </div>
 </div>
 
 <%- include('Partials/footer.ejs') %>
