@@ -11,7 +11,7 @@ let mongoose = require('mongoose');
 let DB = require('./db');
 
 // Connect to MongoDB using Mongoose
-mongoose.connect(DB.URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DB.URI);
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error'));
 mongoDB.once('open', () => {
