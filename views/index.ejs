@@ -1,39 +1,39 @@
-<%- include('Partials/header.ejs') %>
+<%- include('Partials/header.ejs') %> <!-- Include the shared header partial -->
 
 <div class="container mt-5">
-  <h1><%= title %></h1>
-  <a href="/add" class="btn btn-success mb-3">Add New Expense</a>
+  <h1><%= title %></h1> <!-- Display the page title dynamically -->
+  <a href="/add" class="btn btn-success mb-3">Add New Expense</a> <!-- Button to add a new expense -->
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Price</th>
-        <th>Actions</th>
+        <th>Name</th> <!-- Table header for expense name -->
+        <th>Date</th> <!-- Table header for expense date -->
+        <th>Price</th> <!-- Table header for expense price -->
+        <th>Actions</th> <!-- Table header for available actions -->
       </tr>
     </thead>
     <tbody>
-      <% if (expenses && expenses.length > 0) { %>
-        <% expenses.forEach(function(expense) { %>
+      <% if (expenses && expenses.length > 0) { %> <!-- Check if there are any expenses to display -->
+        <% expenses.forEach(function(expense) { %> <!-- Loop through each expense and display its details -->
           <tr>
-            <td><%= expense.name %></td>
-            <td><%= expense.date.toISOString().slice(0, 10) %></td>
-            <td>$<%= expense.price.toFixed(2) %></td>
+            <td><%= expense.name %></td> <!-- Display the expense name -->
+            <td><%= expense.date.toISOString().slice(0, 10) %></td> <!-- Display the expense date in YYYY-MM-DD format -->
+            <td>$<%= expense.price.toFixed(2) %></td> <!-- Display the expense price with two decimal places -->
             <td>
-              <a href="/edit/<%= expense._id %>" class="btn btn-warning">Edit</a>
-              <form action="/delete/<%= expense._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this expense?');">
-                <button type="submit" class="btn btn-danger">Delete</button>
+              <a href="/edit/<%= expense._id %>" class="btn btn-warning">Edit</a> <!-- Button to edit the expense -->
+              <form action="/delete/<%= expense._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this expense?');"> <!-- Form to delete the expense with a confirmation prompt -->
+                <button type="submit" class="btn btn-danger">Delete</button> <!-- Delete button -->
               </form>
             </td>
           </tr>
         <% }); %>
-      <% } else { %>
+      <% } else { %> <!-- If no expenses are found, display a message -->
         <tr>
-          <td colspan="4" class="text-center">No expenses found.</td>
+          <td colspan="4" class="text-center">No expenses found.</td> <!-- Message indicating no expenses are available -->
         </tr>
       <% } %>
     </tbody>
   </table>
 </div>
 
-<%- include('Partials/footer.ejs') %>
+<%- include('Partials/footer.ejs') %> <!-- Include the shared footer partial -->

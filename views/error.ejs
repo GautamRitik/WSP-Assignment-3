@@ -1,5 +1,7 @@
-<%- include Partials/header.ejs %>
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
-<%- include Partials/footer.ejs %>
+<%- include('Partials/header.ejs') %> <!-- Include the shared header partial -->
+
+<h1><%= message %></h1> <!-- Display the error message -->
+<h2><%= error.status %></h2> <!-- Display the error status code -->
+<pre><%= error.stack %></pre> <!-- Display the error stack trace for debugging -->
+
+<%- include('Partials/footer.ejs') %> <!-- Include the shared footer partial -->

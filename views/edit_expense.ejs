@@ -1,26 +1,26 @@
-<%- include('Partials/header.ejs') %>
+<%- include('Partials/header.ejs') %> <!-- Include the shared header partial -->
 
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-6">
-      <h2 class="mb-4 text-center">Edit Expense</h2>
-      <form action="/edit/<%= expense._id %>" method="POST">
+      <h2 class="mb-4 text-center">Edit Expense</h2> <!-- Display the static page title -->
+      <form action="/edit/<%= expense._id %>" method="POST"> <!-- Form to edit an existing expense, using POST method -->
         <div class="mb-3">
-          <label for="name" class="form-label">Expense Name</label>
-          <input type="text" class="form-control" id="name" name="name" value="<%= expense.name %>" required>
+          <label for="name" class="form-label">Expense Name</label> <!-- Label for the expense name input -->
+          <input type="text" class="form-control" id="name" name="name" value="<%= expense.name %>" required> <!-- Input field for expense name, pre-filled with existing data -->
         </div>
         <div class="mb-3">
-          <label for="date" class="form-label">Date</label>
-          <input type="date" class="form-control" id="date" name="date" value="<%= expense.date.toISOString().slice(0, 10) %>" required>
+          <label for="date" class="form-label">Date</label> <!-- Label for the date input -->
+          <input type="date" class="form-control" id="date" name="date" value="<%= expense.date.toISOString().slice(0, 10) %>" required> <!-- Input field for the date of the expense, pre-filled with existing data -->
         </div>
         <div class="mb-3">
-          <label for="price" class="form-label">Price</label>
-          <input type="number" step="0.01" class="form-control" id="price" name="price" value="<%= expense.price %>" required>
+          <label for="price" class="form-label">Price</label> <!-- Label for the price input -->
+          <input type="number" step="0.01" class="form-control" id="price" name="price" value="<%= expense.price %>" required> <!-- Input field for the price of the expense, allowing decimal values, pre-filled with existing data -->
         </div>
-        <button type="submit" class="btn btn-primary btn-md mt-4">Update Expense</button>
+        <button type="submit" class="btn btn-primary btn-md mt-4">Update Expense</button> <!-- Submit button to update the expense -->
       </form>
     </div>
   </div>
 </div>
 
-<%- include('Partials/footer.ejs') %>
+<%- include('Partials/footer.ejs') %> <!-- Include the shared footer partial -->
