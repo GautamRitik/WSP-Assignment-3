@@ -1,0 +1,30 @@
+<%- include('Partials/header.ejs') %>
+
+<div class="container text-center mt-5">
+  <div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Login</h1>
+    <p class="lead">Access your Expense Tracker account.</p>
+    <hr class="my-4">
+
+    <% if (error) { %>
+      <div class="alert alert-danger">
+        <%= error %>
+        <a href="/register" class="alert-link">Register here</a> if you don't have an account.
+      </div>
+    <% } %>
+
+    <form action="/login" method="POST" class="text-start">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Login</button>
+    </form>
+  </div>
+</div>
+
+<%- include('Partials/footer.ejs') %>

@@ -1,13 +1,18 @@
-<%- include('Partials/header.ejs') %> <!-- Include the shared header partial -->
+<%- include('Partials/header.ejs') %>
 
 <div class="container text-center mt-5">
   <div class="jumbotron bg-light p-5 rounded">
-    <h1 class="display-4">Welcome to Expense Tracker!</h1> <!-- Main welcome message -->
-    <p class="lead">Easily track your daily expenses and manage your budget.</p> <!-- Brief description of the app's purpose -->
+    <h1 class="display-4">Welcome to Expense Tracker!</h1>
+    <p class="lead">Track your daily expenses and manage your budget effectively.</p>
     <hr class="my-4">
-    <p>Get started by viewing or adding your expenses now.</p> <!-- Instructional text encouraging the user to proceed -->
-    <a class="btn btn-primary btn-lg" href="/expenses" role="button">Get Started</a> <!-- Button to navigate to the expenses page -->
+    <% if (user) { %>
+      <a class="btn btn-danger btn-lg" href="/logout" role="button">Logout</a>
+    <% } else { %>
+      <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+      <a class="btn btn-secondary btn-lg" href="/register" role="button">Register</a>
+    <% } %>
+    <a class="btn btn-success btn-lg" href="/expenses" role="button">View Expenses</a>
   </div>
 </div>
 
-<%- include('Partials/footer.ejs') %> <!-- Include the shared footer partial -->
+<%- include('Partials/footer.ejs') %>
