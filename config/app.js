@@ -12,7 +12,7 @@ const expenseRouter = require('../routes/expense'); // Import expense routes
 const DB = require('./db'); // Import DB configuration
 
 // Connect to MongoDB
-mongoose.connect(DB.URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DB.URI);
 const mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error'));
 mongoDB.once('open', () => {
